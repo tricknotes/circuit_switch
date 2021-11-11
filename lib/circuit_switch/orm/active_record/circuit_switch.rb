@@ -31,11 +31,11 @@ module CircuitSwitch
     end
 
     def increment_run_count!
-      with_writable { update!(run_count: run_count + 1) }
+      with_writable { save! && increment!(:run_count, touch: true) }
     end
 
     def increment_report_count!
-      with_writable { update!(report_count: report_count + 1) }
+      with_writable { save! && increment!(:report_count, touch: true) }
     end
 
     def message
